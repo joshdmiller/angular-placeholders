@@ -72,6 +72,29 @@ describe( 'placeholderText Directive', function () {
     $compile = _$compile_;
   }));
 
+  it( 'should add random paragraphs by default', function () {
+    var tpl =  '<div placeholder-text></div>',
+        element = $compile( tpl )( scope ),
+        paragraphCount;
+
+    paragraphCount = element.find('p').length;
+
+    expect( paragraphCount ).toBeGreaterThan( 2 );
+    expect( paragraphCount ).toBeLessThan( 8 );
+  });
+
+  it( 'should add a specified number of paragraphs', function () {
+    scope.numParagraphs = 5;
+
+    var tpl =  '<div placeholder-text num-paragraphs="{{numParagraphs}}"></div>',
+        element = $compile( tpl )( scope ),
+        paragraphCount;
+
+    paragraphCount = element.find('p').length;
+
+    expect( paragraphCount ).toBe( scope.numParagraphs );
+  });
+
   it( 'should add the specified number of sentences', function () {
     scope.numSentences = 5;
     
