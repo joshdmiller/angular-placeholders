@@ -1,0 +1,10 @@
+{
+  "author": "Josh David Miller",
+  "name": "angular-placeholders",
+  "version": "0.0.1-SNAPSHOT",
+  "dependencies": {},
+  "devDependencies": {
+    "node-markdown": "*",
+    "grunt": "~0.3.17"
+  }
+}
