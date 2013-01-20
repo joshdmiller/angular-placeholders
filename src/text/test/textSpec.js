@@ -10,16 +10,56 @@ describe( 'TextGeneratorService', function () {
     var sentenceLength = 10,
         sentence = TextGeneratorService.createSentence( sentenceLength ).split( ' ' );
 
-    // It should return an array with the specified number of words.
     expect( sentence.length ).toBe( sentenceLength );
   }));
 
   it( 'should create a sentence with a random word count', inject(function () {
     var sentence = TextGeneratorService.createSentence().split( ' ' );
 
-    // It should return an array with the specified number of words.
     expect( sentence.length ).toBeGreaterThan( 4 );
     expect( sentence.length ).toBeLessThan( 21 );
+  }));
+
+  it( 'should create a random number of sentences', inject(function () {
+    var sentences = TextGeneratorService.createSentences().split( '.' );
+
+    expect( sentences.length - 1 ).toBeGreaterThan( 2 );
+    expect( sentences.length - 1 ).toBeLessThan( 6 );
+  }));
+
+  it( 'should create a specified number of sentences', inject(function () {
+    var sentenceCount = 5,
+        sentences = TextGeneratorService.createSentences( sentenceCount ).split( '.' );
+
+    expect( sentences.length - 1 ).toBe( sentenceCount );
+  }));
+
+  it( 'should create a paragraph with a random number of sentences', inject(function () {
+    var sentences = TextGeneratorService.createParagraph().split( '.' );
+
+    expect( sentences.length - 1 ).toBeGreaterThan( 2 );
+    expect( sentences.length - 1 ).toBeLessThan( 6 );
+  }));
+
+  it( 'should create a paragraph with a specified number of sentences', inject(function () {
+    var sentenceCount = 5,
+        sentences = TextGeneratorService.createParagraph( sentenceCount ).split( '.' );
+
+    expect( sentences.length - 1 ).toBe( sentenceCount );
+  }));
+
+  it( 'should create a random number of paragraphs', inject(function () {
+    var paragraphs = TextGeneratorService.createParagraphs().split( '\n' );
+
+    expect( paragraphs.length - 1 ).toBeGreaterThan( 2 );
+    expect( paragraphs.length - 1 ).toBeLessThan( 8 );
+  }));
+
+  it( 'should create a specified number of paragraphs', inject(function () {
+    var paragraphCount = 5,
+        paragraphs = TextGeneratorService.createParagraphs( paragraphCount ).split( '\n' );
+
+    expect( paragraphs.length ).toBe( paragraphCount );
   }));
 });
 

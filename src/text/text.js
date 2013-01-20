@@ -226,8 +226,8 @@ angular.module( 'placeholders.text', [] )
       // And then we just return the array of sentences, concatenated with spaces.
       return sentences.join( ' ' );
     },
-    createParagraph: function () {
-      var sentences = this.createSentences();
+    createParagraph: function ( numSentences ) {
+      var sentences = this.createSentences( numSentences );
       
       // Make the sentences into a paragraph and return.
       return "<p>" + sentences + "</p>";
