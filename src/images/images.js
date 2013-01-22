@@ -75,8 +75,8 @@ angular.module( 'placeholders.images', [] )
        */
       function getTextSize() {
         var dimension_arr = [scope.size.h, scope.size.w].sort(),
-	          maxFactor = Math.round(dimension_arr[1] / 16);
-	        
+            maxFactor = Math.round(dimension_arr[1] / 16);
+
         return Math.max(config.text_size, maxFactor);
       }
 
@@ -121,7 +121,7 @@ angular.module( 'placeholders.images', [] )
         if (context.measureText( text ).width / scope.size.w > 1) {
           text_size = config.text_size / (context.measureText( text ).width / scope.size.w);
           context.font = 'bold '+text_size+'pt sans-serif';
-	      }
+        }
 
         // Finally, draw the text in its calculated position.
         context.fillText( scope.dimensions, scope.size.w / 2, scope.size.h / 2 );

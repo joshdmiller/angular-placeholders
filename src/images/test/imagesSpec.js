@@ -12,13 +12,17 @@ describe( 'placeholderImage', function () {
     scope.$digest();
   }));
 
-  it( 'should add an image source', inject( function () {
-    expect( element.prop("src") ).toBeTruthy();
-  }));
-
   it( 'should create an image of appropriate dimensions', inject( function () {
-    expect( element.prop( 'naturalWidth' ) ).toBe( scope.w );
-    expect( element.prop( 'naturalHeight' ) ).toBe( scope.h );
+    // Unfortunately, it can take just a few milliseconds sometimes for the
+    // creation of the canvas and assigning its data url to the image. So we
+    // have to call this asynchronously.
+    waits(10);
+    runs(function () {
+      expect( element.prop("src") ).toBeTruthy();
+      
+      expect( element.prop( 'naturalWidth' ) ).toBe( scope.w );
+      expect( element.prop( 'naturalHeight' ) ).toBe( scope.h );
+    });
   }));
   
   it( 'should add the title and alt attributes', inject( function () {
