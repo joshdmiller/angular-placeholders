@@ -18,6 +18,13 @@
  * IN THE SOFTWARE.
  */
 
+/**
+ * Creates a placeholder image client-side for use during design and
+ * development.
+ *
+ * TODO: Right now, it only supports `img` tags. This should be enforced in code
+ * and default to adding a CSS `background-image` for non-`img` elements.
+ */
 angular.module( 'placeholders.images', [] )
 .directive( 'placeholderImage', function () {
   return {
@@ -27,7 +34,22 @@ angular.module( 'placeholders.images', [] )
       // A reference to a canvas that we can reuse
       var canvas;
 
-      // Recalculate the size when the attribute changes.
+      /**
+       * The configurable parameters of the placeholder image.
+       *
+       * TODO: make configurable
+       * TODO: make defaultable
+       */
+      var config = {
+        text_size: 10,
+        fill_color: '#EEEEEE',
+        text_color: '#AAAAAA'
+      };
+
+      /**
+       * When the provided dimensions change, re-pull the width and height and
+       * then redraw the image.
+       */
       scope.$watch('dimensions', function () {
         var matches = scope.dimensions.match( /^(\d+)x(\d+)$/ );
         
@@ -36,6 +58,7 @@ angular.module( 'placeholders.images', [] )
           return;
         }
         
+        // Grab the provided dimensions.
         scope.size = { w: matches[1], h: matches[2] };
 
         // FIXME: only add these if not already present
@@ -46,13 +69,33 @@ angular.module( 'placeholders.images', [] )
         element.prop( 'src', drawImage() );
       });
 
+      /**
+       * Calculate the maximum height of the text we can draw, based on the
+       * requested dimensions of the image.
+       */
+      function getTextSize() {
+        var dimension_arr = [scope.size.h, scope.size.w].sort(),
+	          maxFactor = Math.round(dimension_arr[1] / 16);
+	        
+        return Math.max(config.text_size, maxFactor);
+      }
+
+      /**
+       * Using the HTML5 canvas API, draw a placeholder image of the requested
+       * size with text centered vertically and horizontally that specifies its
+       * dimensions. Returns the data URL that can be used as an `img`'s `src`
+       * attribute.
+       */
       function drawImage() {
-        // Create a new canvas if we don't already have one.
+        // Create a new canvas if we don't already have one. We reuse the canvas
+        // when if gets redrawn so as not to be wasteful.
         canvas = canvas || document.createElement( 'canvas' );
         
         // Obtain a 2d drawing context on which we can add the placeholder
         // image.
-        var context = canvas.getContext( '2d' );
+        var context = canvas.getContext( '2d' ),
+            text_size,
+            text;
 
         // Set the canvas to the appropriate size.
         canvas.width = scope.size.w;
@@ -61,16 +104,26 @@ angular.module( 'placeholders.images', [] )
         // Draw the placeholder image square.
         // TODO: support other shapes
         // TODO: support configurable colors
-        context.fillStyle = '#EEEEEE';
+        context.fillStyle = config.fill_color;
         context.fillRect( 0, 0, scope.size.w, scope.size.h );
 
         // Add the dimension text.
         // TODO: support configurable font
         // FIXME: ensure text will fit and resize if it doesn't
-        context.fillStyle = '#AAAAAA';
-        context.font = 'bold 10pt sans-serif';
+        text_size = getTextSize();
+        text = scope.dimensions;
+        context.fillStyle = config.text_color;
         context.textAlign = 'center';
         context.textBaseline = 'middle';
+        context.font = 'bold '+text_size+'pt sans-serif';
+
+        // If the text is too long to fit, reduce it until it will.
+        if (context.measureText( text ).width / scope.size.w > 1) {
+          text_size = config.text_size / (context.measureText( text ).width / scope.size.w);
+          context.font = 'bold '+text_size+'pt sans-serif';
+	      }
+
+        // Finally, draw the text in its calculated position.
         context.fillText( scope.dimensions, scope.size.w / 2, scope.size.h / 2 );
 
         // Get the data URL and return it.
