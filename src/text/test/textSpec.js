@@ -51,8 +51,8 @@ describe( 'TextGeneratorService', function () {
   it( 'should create a random number of paragraphs', inject(function () {
     var paragraphs = TextGeneratorService.createParagraphs().split( '\n' );
 
-    expect( paragraphs.length - 1 ).toBeGreaterThan( 2 );
-    expect( paragraphs.length - 1 ).toBeLessThan( 8 );
+    expect( paragraphs.length ).toBeGreaterThan( 2 );
+    expect( paragraphs.length ).toBeLessThan( 8 );
   }));
 
   it( 'should create a specified number of paragraphs', inject(function () {
