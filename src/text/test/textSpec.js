@@ -84,23 +84,27 @@ describe( 'placeholderText Directive', function () {
   });
 
   it( 'should add a specified number of paragraphs', function () {
-    scope.numParagraphs = 5;
 
     var tpl =  '<div placeholder-text num-paragraphs="{{numParagraphs}}"></div>',
         element = $compile( tpl )( scope ),
         paragraphCount;
 
+    scope.numParagraphs = 5;
+    scope.$digest();
+ 
     paragraphCount = element.find('p').length;
 
     expect( paragraphCount ).toBe( scope.numParagraphs );
   });
 
   it( 'should add the specified number of sentences', function () {
-    scope.numSentences = 5;
     
     var tpl =  '<div placeholder-text num-sentences="{{numSentences}}"></div>',
         element = $compile( tpl )( scope ),
         text;
+    
+    scope.numSentences = 5;
+    scope.$digest();
 
     // Get the inner text of the element.
     text = element.text();

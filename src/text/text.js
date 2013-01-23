@@ -252,16 +252,38 @@ angular.module( 'placeholders.text', [] )
 .directive( 'placeholderText', function ( TextGeneratorService ) {
   return {
     restrict: "EA",
-    link: function ( scope, element, attr ) {
-      if ( scope.numSentences ) {
-        element.text(
-          TextGeneratorService.createSentences( parseInt( scope.numSentences, 10 ) )
+    controller: function ( $scope, $element, $attrs ) {
+      function doSentences( num ) {
+        $element.text(
+          TextGeneratorService.createSentences( parseInt( num, 10 ) )
         );
-      } else {
-        element.html(
-          TextGeneratorService.createParagraphs( parseInt( scope.numParagraphs, 10 ) )
-        );  
       }
+
+      function doParagraphs( num ) {
+        $element.html(
+          TextGeneratorService.createParagraphs( parseInt( num, 10 ) )
+        );
+      }
+
+      if ( ! $attrs.numSentences && ! $attrs.numParagraphs ) {
+        doParagraphs();
+      }
+
+      $attrs.$observe( 'numSentences', function ( num ) {
+        if ( !angular.isDefined( num ) ) {
+          return;
+        }
+
+        doSentences( num );
+      });
+
+      $attrs.$observe( 'numParagraphs', function ( num ) {
+        if ( !angular.isDefined( num ) ) {
+          return;
+        }
+
+        doParagraphs( num );
+      });
     }
   };
 });
