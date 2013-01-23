@@ -1,5 +1,7 @@
 # Placeholders for AngularJS!
 
+See the [demo](http://joshdmiller.github.com/angular-placeholders)!
+
 ---
 
 ## Placeholder Text
@@ -27,5 +29,13 @@ of the image to create; the expected format is "100x100".
 The build toolchain for angular-placeholders was ~~stolen~~ borrowed from the
 [ui-bootstrap](http://github.com/angular-ui/bootstrap) project.
 
-*Coming Soon*
+The build script is written using [Grunt][http://gruntjs.com], a command-line
+build tool for JavaScript projects. To build, run the following command in the
+terminal:
+
+    $ grunt
+
+That was easy! It will run tests, generate the documentation/demo site, compile
+the modules, and minify the source. The resulting files will be in the `dist/`
+directory.
 

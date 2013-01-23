@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="placeholdersDemoApp" id="top">
+<head>
+    <meta charset="utf-8">
+    <title>AngularJS Placeholder Directives</title>
+    <meta name="description" content="AngularJS client-side placeholder directives">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/<%= ngversion %>/angular.min.js"></script>
+    <script src="angular-placeholders-<%= version%>.min.js"></script>
+    <script src="assets/ui-bootstrap-tpls-0.1.0-SNAPSHOT.min.js"></script>
+    <script src="assets/plunker.js"></script>
+    <script>
+        angular.module('placeholdersDemoApp', ['placeholders', 'plunker', 'ui.bootstrap']);
+    </script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/bootstrap-responsive.css"/>
+    <link rel="stylesheet" href="assets/rainbow.css"/>
+    <link rel="stylesheet" href="assets/demo.css"/>
+
+    <link rel="author" href="https://github.com/joshdmiller/angular-placeholders/graphs/contributors">
+</head>
+<body class="ng-cloak">
+<header class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">angular-placeholders</a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <% modules.forEach(function(module) {  %>
+            <li><a href="#<%= module.name %>"><%= module.displayName %></a></li>
+          <% });  %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+<div style="margin: 32px;"></div>
+<div role="main">
+
+    <header class="hero-unit" id="overview">
+        <div class="container">
+            <h1>
+                AngularJS Placeholders
+            </h1>
+
+            <p>Client-side placeholder directives written in pure <strong><a href="http://angularjs.org">AngularJS</a></strong> by <strong><a
+                    href="http://gplus.to/joshdmiller">Josh David Miller</a></strong></p>
+
+            <p class="btn-group">
+                <a class="btn btn-large" href="https://github.com/joshdmiller/angular-placeholders"><i class="icon-github"></i>Code on Github</a>
+                <a class="btn btn-large btn-primary" href="https://github.com/joshdmiller/angular-placeholders/tree/gh-pages">
+                    <i class="icon-download-alt icon-white"></i>Download <small>(<%= version%>)</small>
+                </a>
+            </p>
+        </div>
+        <div class="bs-docs-social">
+            <div class="container">
+                <ul class="bs-docs-social-buttons">
+                    <li>
+                        <iframe src="http://ghbtns.com/github-btn.html?user=joshdmiller&repo=angular-placeholders&type=watch&count=true"
+                                allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
+                    </li>
+                    <li>
+                        <iframe src="http://ghbtns.com/github-btn.html?user=joshdmiller&repo=angular-placeholders&type=fork&count=true"
+                                allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/share" class="twitter-share-button"
+                           data-hashtags="angularjs">Tweet</a>
+                        <script>!function (d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0];
+                            if (!d.getElementById(id)) {
+                                js = d.createElement(s);
+                                js.id = id;
+                                js.src = "http://platform.twitter.com/widgets.js";
+                                fjs.parentNode.insertBefore(js, fjs);
+                            }
+                        }(document, "script", "twitter-wjs");</script>
+                    </li>
+                    <li>
+                        <!-- Place this tag where you want the +1 button to render. -->
+                        <div class="g-plusone" data-size="medium"></div>
+
+                        <!-- Place this tag after the last +1 button tag. -->
+                        <script type="text/javascript">
+                            (function () {
+                                var po = document.createElement('script');
+                                po.type = 'text/javascript';
+                                po.async = true;
+                                po.src = 'https://apis.google.com/js/plusone.js';
+                                var s = document.getElementsByTagName('script')[0];
+                                s.parentNode.insertBefore(po, s);
+                            })();
+                        </script>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <div class="container container">
+    <% modules.forEach(function(module) { %>
+      <section id="<%= module.name %>">
+        <div class="page-header">
+          <h1><%= module.displayName %></h1>
+        </div>
+        <div class="row">
+            <div class="span6">
+                <%= module.html %>
+            </div>
+            <div class="span6">
+                <%= module.description %>
+                <section>
+                From module: <a href="https://github.com/joshdmiller/angular-placeholders/tree/master/src/<%= module.name %>">placeholders.<%= module.name %></a>
+                </section>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="span12" ng-controller="PlunkerCtrl">
+                <div class="pull-right">
+                    <button class="btn btn-info" id="plunk-btn" ng-click="edit('<%= version%>', '<%= module.name %>')"><i class="icon-edit icon-white"></i> Edit in plunker</button>
+                </div>
+                <tabs>
+                    <pane heading="Markup" plunker-content="markup"><pre ng-non-bindable><code data-language="html"><%- module.html %></code></pre></pane>
+                    <pane heading="JavaScript" plunker-content="javascript"><pre ng-non-bindable><code data-language="javascript"><%- module.js %></code></pre></pane>
+                </tabs>
+            </div>
+        </div>
+      </section>
+      <script><%= module.js %></script>
+    <% }); %>
+  </div>
+</div>
+<script src="assets/rainbow.js"></script>
+<script src="assets/rainbow-generic.js"></script>
+<script src="assets/rainbow-javascript.js"></script>
+<script src="assets/rainbow-html.js"></script>
+</body>
+</html>

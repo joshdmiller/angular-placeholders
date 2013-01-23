@@ -249,10 +249,10 @@ angular.module( 'placeholders.text', [] )
   };
 })
 
-.directive( 'placeholderText', function ( TextGeneratorService ) {
+.directive( 'placeholderText', [ 'TextGeneratorService', function ( TextGeneratorService ) {
   return {
     restrict: "EA",
-    controller: function ( $scope, $element, $attrs ) {
+    controller: [ '$scope', '$element', '$attrs', function ( $scope, $element, $attrs ) {
       function doSentences( num ) {
         $element.text(
           TextGeneratorService.createSentences( parseInt( num, 10 ) )
@@ -284,7 +284,7 @@ angular.module( 'placeholders.text', [] )
 
         doParagraphs( num );
       });
-    }
+    }]
   };
-});
+}]);
 
