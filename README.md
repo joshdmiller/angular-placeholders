@@ -29,7 +29,7 @@ of the image to create; the expected format is "100x100".
 The build toolchain for angular-placeholders was ~~stolen~~ borrowed from the
 [ui-bootstrap](http://github.com/angular-ui/bootstrap) project.
 
-The build script is written using [Grunt][http://gruntjs.com], a command-line
+The build script is written using [Grunt](http://gruntjs.com), a command-line
 build tool for JavaScript projects. To build, run the following command in the
 terminal:
 
