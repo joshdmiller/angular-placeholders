@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="placeholdersDemoApp" id="top">
+<head>
+    <meta charset="utf-8">
+    <title>AngularJS Placeholder Directives</title>
+    <meta name="description" content="AngularJS client-side placeholder directives">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
+    <script src="angular-placeholders-0.0.1-SNAPSHOT.min.js"></script>
+    <script src="assets/ui-bootstrap-tpls-0.1.0-SNAPSHOT.min.js"></script>
+    <script src="assets/plunker.js"></script>
+    <script>
+        angular.module('placeholdersDemoApp', ['placeholders', 'plunker', 'ui.bootstrap']);
+    </script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/bootstrap-responsive.css"/>
+    <link rel="stylesheet" href="assets/rainbow.css"/>
+    <link rel="stylesheet" href="assets/demo.css"/>
+
+    <link rel="author" href="https://github.com/joshdmiller/angular-placeholders/graphs/contributors">
+</head>
+<body class="ng-cloak">
+<header class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">angular-placeholders</a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          
+            <li><a href="#images">Images</a></li>
+          
+            <li><a href="#text">Text</a></li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+<div style="margin: 32px;"></div>
+<div role="main">
+
+    <header class="hero-unit" id="overview">
+        <div class="container">
+            <h1>
+                AngularJS Placeholders
+            </h1>
+
+            <p>Client-side placeholder directives written in pure <strong><a href="http://angularjs.org">AngularJS</a></strong> by <strong><a
+                    href="http://gplus.to/joshdmiller">Josh David Miller</a></strong></p>
+
+            <p class="btn-group">
+                <a class="btn btn-large" href="https://github.com/joshdmiller/angular-placeholders"><i class="icon-github"></i>Code on Github</a>
+                <a class="btn btn-large btn-primary" href="https://github.com/joshdmiller/angular-placeholders/tree/gh-pages">
+                    <i class="icon-download-alt icon-white"></i>Download <small>(0.0.1-SNAPSHOT)</small>
+                </a>
+            </p>
+        </div>
+        <div class="bs-docs-social">
+            <div class="container">
+                <ul class="bs-docs-social-buttons">
+                    <li>
+                        <iframe src="http://ghbtns.com/github-btn.html?user=joshdmiller&repo=angular-placeholders&type=watch&count=true"
+                                allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
+                    </li>
+                    <li>
+                        <iframe src="http://ghbtns.com/github-btn.html?user=joshdmiller&repo=angular-placeholders&type=fork&count=true"
+                                allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/share" class="twitter-share-button"
+                           data-hashtags="angularjs">Tweet</a>
+                        <script>!function (d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0];
+                            if (!d.getElementById(id)) {
+                                js = d.createElement(s);
+                                js.id = id;
+                                js.src = "http://platform.twitter.com/widgets.js";
+                                fjs.parentNode.insertBefore(js, fjs);
+                            }
+                        }(document, "script", "twitter-wjs");</script>
+                    </li>
+                    <li>
+                        <!-- Place this tag where you want the +1 button to render. -->
+                        <div class="g-plusone" data-size="medium"></div>
+
+                        <!-- Place this tag after the last +1 button tag. -->
+                        <script type="text/javascript">
+                            (function () {
+                                var po = document.createElement('script');
+                                po.type = 'text/javascript';
+                                po.async = true;
+                                po.src = 'https://apis.google.com/js/plusone.js';
+                                var s = document.getElementsByTagName('script')[0];
+                                s.parentNode.insertBefore(po, s);
+                            })();
+                        </script>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <div class="container container">
+    
+      <section id="images">
+        <div class="page-header">
+          <h1>Images</h1>
+        </div>
+        <div class="row">
+            <div class="span6">
+                <div ng-controller="ImageDemoCtrl">
+  <ul class="thumbnails">
+    <li class="span3"><a class="thumbnail"><img placeholder-image="260x196" /></a></li>
+    <li class="span2"><a class="thumbnail"><img placeholder-image="160x83" /></a></li>
+    <li class="span1"><a class="thumbnail"><img placeholder-image="60x83" /></a></li>
+    <li class="span2"><a class="thumbnail"><img placeholder-image="160x83" /></a></li>
+    <li class="span1"><a class="thumbnail"><img placeholder-image="60x83" /></a></li>
+  </ul>
+</div>
+
+            </div>
+            <div class="span6">
+                <p>The <code>placeholderImage</code> directive creates client-side placeholder images in any
+size. The directive creates a PNG image using the HTML5 canvas library and
+uses the generated client-side URL as the <code>src</code> on an <code>img</code> element.</p>
+
+<p>The directive takes a single eponymous attribute that specifies the dimensions
+of the image to create; the expected format is "100x100".</p>
+                <section>
+                From module: <a href="https://github.com/joshdmiller/angular-placeholders/tree/master/src/images">placeholders.images</a>
+                </section>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="span12" ng-controller="PlunkerCtrl">
+                <div class="pull-right">
+                    <button class="btn btn-info" id="plunk-btn" ng-click="edit('0.0.1-SNAPSHOT', 'images')"><i class="icon-edit icon-white"></i> Edit in plunker</button>
+                </div>
+                <tabs>
+                    <pane heading="Markup" plunker-content="markup"><pre ng-non-bindable><code data-language="html">&lt;div ng-controller=&quot;ImageDemoCtrl&quot;&gt;
+  &lt;ul class=&quot;thumbnails&quot;&gt;
+    &lt;li class=&quot;span3&quot;&gt;&lt;a class=&quot;thumbnail&quot;&gt;&lt;img placeholder-image=&quot;260x196&quot; &#x2F;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+    &lt;li class=&quot;span2&quot;&gt;&lt;a class=&quot;thumbnail&quot;&gt;&lt;img placeholder-image=&quot;160x83&quot; &#x2F;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+    &lt;li class=&quot;span1&quot;&gt;&lt;a class=&quot;thumbnail&quot;&gt;&lt;img placeholder-image=&quot;60x83&quot; &#x2F;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+    &lt;li class=&quot;span2&quot;&gt;&lt;a class=&quot;thumbnail&quot;&gt;&lt;img placeholder-image=&quot;160x83&quot; &#x2F;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+    &lt;li class=&quot;span1&quot;&gt;&lt;a class=&quot;thumbnail&quot;&gt;&lt;img placeholder-image=&quot;60x83&quot; &#x2F;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+  &lt;&#x2F;ul&gt;
+&lt;&#x2F;div&gt;
+</code></pre></pane>
+                    <pane heading="JavaScript" plunker-content="javascript"><pre ng-non-bindable><code data-language="javascript">var ImageDemoCtrl = function ( $scope ) {
+  $scope.imageDimension = &#x27;200x200&#x27;;
+};
+</code></pre></pane>
+                </tabs>
+            </div>
+        </div>
+      </section>
+      <script>var ImageDemoCtrl = function ( $scope ) {
+  $scope.imageDimension = '200x200';
+};
+</script>
+    
+      <section id="text">
+        <div class="page-header">
+          <h1>Text</h1>
+        </div>
+        <div class="row">
+            <div class="span6">
+                <div ng-controller="TextDemoCtrl">
+  <h3>Here's a few sentences</h3>
+  <p># Sentences: <input ng-model="numSentences" /></p>
+  <p placeholder-text num-sentences="{{numSentences}}"></p>
+
+  <h3>And a few paragraphs</h3>
+  <p># Paragraphs: <input ng-model="numParagraphs" /></p>
+  <div placeholder-text num-paragraphs="{{numParagraphs}}"></div>
+</div>
+
+            </div>
+            <div class="span6">
+                <p>The <code>placeholderText</code> directive dynamically inserts "Lorem ipsum"-style text
+into an element. It can work as either an element or an attribute. </p>
+
+<p><code>placeholderText</code> accepts two optional attributes: <code>num-sentences</code> and
+<code>num-paragraphs</code>. If <code>num-sentences</code> is provided, the body of the element will
+be replaced with the specified number of sentences. <code>num-paragraphs</code> will
+replace the body of the element with the specified number of <code>&lt;p&gt;</code> tags
+containing random sentences. </p>
+
+<p>The default behavior is a random number of paragraphs.</p>
+                <section>
+                From module: <a href="https://github.com/joshdmiller/angular-placeholders/tree/master/src/text">placeholders.text</a>
+                </section>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="span12" ng-controller="PlunkerCtrl">
+                <div class="pull-right">
+                    <button class="btn btn-info" id="plunk-btn" ng-click="edit('0.0.1-SNAPSHOT', 'text')"><i class="icon-edit icon-white"></i> Edit in plunker</button>
+                </div>
+                <tabs>
+                    <pane heading="Markup" plunker-content="markup"><pre ng-non-bindable><code data-language="html">&lt;div ng-controller=&quot;TextDemoCtrl&quot;&gt;
+  &lt;h3&gt;Here&#x27;s a few sentences&lt;&#x2F;h3&gt;
+  &lt;p&gt;# Sentences: &lt;input ng-model=&quot;numSentences&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+  &lt;p placeholder-text num-sentences=&quot;{{numSentences}}&quot;&gt;&lt;&#x2F;p&gt;
+
+  &lt;h3&gt;And a few paragraphs&lt;&#x2F;h3&gt;
+  &lt;p&gt;# Paragraphs: &lt;input ng-model=&quot;numParagraphs&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+  &lt;div placeholder-text num-paragraphs=&quot;{{numParagraphs}}&quot;&gt;&lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+</code></pre></pane>
+                    <pane heading="JavaScript" plunker-content="javascript"><pre ng-non-bindable><code data-language="javascript">var TextDemoCtrl = function ( $scope ) {
+  $scope.numSentences = &quot;3&quot;;
+  $scope.numParagraphs = &quot;2&quot;;
+};
+</code></pre></pane>
+                </tabs>
+            </div>
+        </div>
+      </section>
+      <script>var TextDemoCtrl = function ( $scope ) {
+  $scope.numSentences = "3";
+  $scope.numParagraphs = "2";
+};
+</script>
+    
+  </div>
+</div>
+<script src="assets/rainbow.js"></script>
+<script src="assets/rainbow-generic.js"></script>
+<script src="assets/rainbow-javascript.js"></script>
+<script src="assets/rainbow-html.js"></script>
+</body>
+</html>
