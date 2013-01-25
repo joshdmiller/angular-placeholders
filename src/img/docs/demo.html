@@ -1,0 +1,33 @@
+<div ng-controller="ImageDemoCtrl">
+  <ul class="thumbnails">
+    <li class="span3"><a class="thumbnail"><img ph-img="260x196" /></a></li>
+    <li class="span2"><a class="thumbnail"><img ph-img="160x83" /></a></li>
+    <li class="span1"><a class="thumbnail"><img ph-img="60x83" /></a></li>
+    <li class="span2"><a class="thumbnail"><img ph-img="160x83" /></a></li>
+    <li class="span1"><a class="thumbnail"><img ph-img="60x83" /></a></li>
+  </ul>
+  <hr />
+  <div>
+    <h3>It's More Powerful with Bootstrap!</h3>
+    <ul class="inline">
+      <li>
+        <h4><center><code>.img-polaroid</code></center></h4>
+        <img class="img-polaroid" ph-img="160x160" />
+      </li>
+      <li>
+        <h4><center><code>.img-circle</code></center></h4>
+        <img class="img-circle" ph-img="160x160" />
+      </li>
+      <li>
+        <h4><center><code>.img-rounded</code></center></h4>
+        <img class="img-rounded" ph-img="160x160" />
+      </li>
+    </ul>
+  </div>
+  <hr />
+  <div>
+    <h3>It Can Change in Real Time</h3>
+    <p>Image Dimensions: <input ng-model="imageDimension"></p>
+    <img class="img-polaroid" ph-img="{{imageDimension}}" />
+  </div>
+</div>

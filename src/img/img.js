@@ -25,11 +25,11 @@
  * TODO: Right now, it only supports `img` tags. This should be enforced in code
  * and default to adding a CSS `background-image` for non-`img` elements.
  */
-angular.module( 'placeholders.images', [] )
-.directive( 'placeholderImage', function () {
+angular.module( 'placeholders.img', [] )
+.directive( 'phImg', function () {
   return {
     restrict: 'A',
-    scope: { dimensions: '@placeholderImage' },
+    scope: { dimensions: '@phImg' },
     link: function( scope, element, attr ) {
       // A reference to a canvas that we can reuse
       var canvas;

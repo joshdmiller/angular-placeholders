@@ -1,6 +1,6 @@
 describe( 'TextGeneratorService', function () {
   // Load the module.
-  beforeEach(module('placeholders.text'));
+  beforeEach(module('placeholders.txt'));
 
   beforeEach(inject(function( _TextGeneratorService_ ) {
     TextGeneratorService = _TextGeneratorService_;
@@ -63,9 +63,9 @@ describe( 'TextGeneratorService', function () {
   }));
 });
 
-describe( 'placeholderText Directive', function () {
+describe( 'phTxt Directive', function () {
   // Load the module.
-  beforeEach(module('placeholders.text'));
+  beforeEach(module('placeholders.txt'));
 
   beforeEach(inject(function (_$rootScope_, _$compile_) {
     scope = _$rootScope_;
@@ -73,7 +73,7 @@ describe( 'placeholderText Directive', function () {
   }));
 
   it( 'should add random paragraphs by default', function () {
-    var tpl =  '<div placeholder-text></div>',
+    var tpl =  '<div ph-txt></div>',
         element = $compile( tpl )( scope ),
         paragraphCount;
 
@@ -85,7 +85,7 @@ describe( 'placeholderText Directive', function () {
 
   it( 'should add a specified number of paragraphs', function () {
 
-    var tpl =  '<div placeholder-text num-paragraphs="{{numParagraphs}}"></div>',
+    var tpl =  '<div ph-txt num-paragraphs="{{numParagraphs}}"></div>',
         element = $compile( tpl )( scope ),
         paragraphCount;
 
@@ -99,7 +99,7 @@ describe( 'placeholderText Directive', function () {
 
   it( 'should add the specified number of sentences', function () {
     
-    var tpl =  '<div placeholder-text num-sentences="{{numSentences}}"></div>',
+    var tpl =  '<div ph-txt num-sentences="{{numSentences}}"></div>',
         element = $compile( tpl )( scope ),
         text;
     
