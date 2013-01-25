@@ -22,7 +22,7 @@
  * This is based, in part, on [fkadeveloper](https://github.com/fkadeveloper)'s
  * [lorem.js](https://github.com/fkadeveloper/loremjs).
  */
-angular.module( 'placeholders.text', [] )
+angular.module( 'placeholders.txt', [] )
 .factory( 'TextGeneratorService', function () {
   var words = ["lorem", "ipsum", "dolor", "sit", "amet,", "consectetur", "adipiscing",
     "elit", "ut", "aliquam,", "purus", "sit", "amet", "luctus", "venenatis,",
@@ -249,7 +249,7 @@ angular.module( 'placeholders.text', [] )
   };
 })
 
-.directive( 'placeholderText', [ 'TextGeneratorService', function ( TextGeneratorService ) {
+.directive( 'phTxt', [ 'TextGeneratorService', function ( TextGeneratorService ) {
   return {
     restrict: "EA",
     controller: [ '$scope', '$element', '$attrs', function ( $scope, $element, $attrs ) {
