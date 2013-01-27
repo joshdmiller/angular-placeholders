@@ -1,4 +1,4 @@
-angular.module("placeholders", ["placeholders.images","placeholders.text"]);
+angular.module("placeholders", ["placeholders.img","placeholders.txt"]);
 
 /**
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,11 +27,11 @@ angular.module("placeholders", ["placeholders.images","placeholders.text"]);
  * TODO: Right now, it only supports `img` tags. This should be enforced in code
  * and default to adding a CSS `background-image` for non-`img` elements.
  */
-angular.module( 'placeholders.images', [] )
-.directive( 'placeholderImage', function () {
+angular.module( 'placeholders.img', [] )
+.directive( 'phImg', function () {
   return {
     restrict: 'A',
-    scope: { dimensions: '@placeholderImage' },
+    scope: { dimensions: '@phImg' },
     link: function( scope, element, attr ) {
       // A reference to a canvas that we can reuse
       var canvas;
@@ -160,7 +160,7 @@ angular.module( 'placeholders.images', [] )
  * This is based, in part, on [fkadeveloper](https://github.com/fkadeveloper)'s
  * [lorem.js](https://github.com/fkadeveloper/loremjs).
  */
-angular.module( 'placeholders.text', [] )
+angular.module( 'placeholders.txt', [] )
 .factory( 'TextGeneratorService', function () {
   var words = ["lorem", "ipsum", "dolor", "sit", "amet,", "consectetur", "adipiscing",
     "elit", "ut", "aliquam,", "purus", "sit", "amet", "luctus", "venenatis,",
@@ -387,7 +387,7 @@ angular.module( 'placeholders.text', [] )
   };
 })
 
-.directive( 'placeholderText', [ 'TextGeneratorService', function ( TextGeneratorService ) {
+.directive( 'phTxt', [ 'TextGeneratorService', function ( TextGeneratorService ) {
   return {
     restrict: "EA",
     controller: [ '$scope', '$element', '$attrs', function ( $scope, $element, $attrs ) {
