@@ -1,5 +1,5 @@
-describe( 'placeholderImage', function () {
-  beforeEach( module( 'placeholders.images' ) );
+describe( 'phImg', function () {
+  beforeEach( module( 'placeholders.img' ) );
 
   beforeEach( inject( function ( _$rootScope_, _$compile_) {
     $compile = _$compile_;
@@ -8,7 +8,7 @@ describe( 'placeholderImage', function () {
     scope.w = 300;
     scope.h = 150;
 
-    element = $compile( '<img placeholder-image="{{w}}x{{h}}" />' )( scope );
+    element = $compile( '<img ph-img="{{w}}x{{h}}" />' )( scope );
     scope.$digest();
   }));
 

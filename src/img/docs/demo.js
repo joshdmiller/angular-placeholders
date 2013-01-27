@@ -1,3 +1,3 @@
 var ImageDemoCtrl = function ( $scope ) {
-  $scope.imageDimension = '200x200';
+  $scope.imageDimension = '550x300';
 };

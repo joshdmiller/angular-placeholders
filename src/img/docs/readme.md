@@ -1,4 +1,4 @@
-The `placeholderImage` directive creates client-side placeholder images in any
+The `phImg` directive creates client-side placeholder images in any
 size. The directive creates a PNG image using the HTML5 canvas library and
 uses the generated client-side URL as the `src` on an `img` element.
 
