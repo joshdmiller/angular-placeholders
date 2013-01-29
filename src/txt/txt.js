@@ -232,7 +232,7 @@ angular.module( 'placeholders.txt', [] )
       // Make the sentences into a paragraph and return.
       return "<p>" + sentences + "</p>";
     },
-    createParagraphs: function ( numParagraphs ) {
+    createParagraphs: function ( numParagraphs, numSentences ) {
       var paragraphs = [],
           i = 0;
       
@@ -240,7 +240,7 @@ angular.module( 'placeholders.txt', [] )
       
       // Create the number of paragraphs requested.
       for ( i = 0; i < numParagraphs; i++ ) {
-        paragraphs.push( this.createParagraph() );
+        paragraphs.push( this.createParagraph( numSentences ) );
       }
       
       // Return the paragraphs, concatenated with newlines.
@@ -253,37 +253,55 @@ angular.module( 'placeholders.txt', [] )
   return {
     restrict: "EA",
     controller: [ '$scope', '$element', '$attrs', function ( $scope, $element, $attrs ) {
-      function doSentences( num ) {
-        $element.text(
-          TextGeneratorService.createSentences( parseInt( num, 10 ) )
-        );
-      }
+      var numSentences,
+          numParagraphs;
 
-      function doParagraphs( num ) {
-        $element.html(
-          TextGeneratorService.createParagraphs( parseInt( num, 10 ) )
-        );
-      }
+      // Gets the number of paragraphs or sentences from the service and
+      // populates the DOM node.
+      function populate() {
+        var contents;
 
-      if ( ! $attrs.numSentences && ! $attrs.numParagraphs ) {
-        doParagraphs();
-      }
-
-      $attrs.$observe( 'numSentences', function ( num ) {
-        if ( !angular.isDefined( num ) ) {
-          return;
+        // If p or neither, then get paragraphs. Else, get sentences.
+        if ( numParagraphs || !numSentences ) {
+          contents = TextGeneratorService.createParagraphs( numParagraphs, numSentences );
+        } else {
+          contents = TextGeneratorService.createSentences( numSentences );
         }
 
-        doSentences( num );
-      });
+        $element.html( contents );
+      }
 
-      $attrs.$observe( 'numParagraphs', function ( num ) {
-        if ( !angular.isDefined( num ) ) {
-          return;
+      $attrs.$observe( 'phTxt', function ( val ) {
+        var p_match, s_match;
+
+        // Pull out the matches.
+        p_match = val.match( /(\d+)p/ );
+        s_match = val.match( /(\d+)s/ );
+
+        // If there was a match, store the value. If there wasn't, we set the
+        // value to false to ensure no old value is kept around.
+        if ( p_match !== null ) {
+          numParagraphs = parseInt( p_match[1], 10 );
+        } else {
+          numParagraphs = false;
         }
 
-        doParagraphs( num );
+        // Same for sentences...
+        if ( s_match !== null ) {
+          numSentences = parseInt( s_match[1], 10 );
+        } else {
+          numSentences = false;
+        }
+
+        // And populate everything.
+        populate();
       });
+      
+      // If nothing was passed, the $observe will never run, so we need to trigger
+      // the `populate()` manually.
+      if ( ! $attrs.phTxt ) {
+        populate();
+      }
     }]
   };
 }]);
