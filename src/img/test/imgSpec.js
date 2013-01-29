@@ -30,5 +30,13 @@ describe( 'phImg', function () {
     expect( element.prop( 'alt' ) ).toBe( dimensions );
     expect( element.prop( 'title' ) ).toBe( dimensions );
   }));
+
+  it( 'should set the CSS `background-image` property if tag is not an img', inject( function () {
+    element = $compile( '<div ph-img="{{w}}x{{h}}"></div>' )( scope );
+    scope.$digest();
+
+    var bgImg = element.css( 'background-image' );
+    expect( bgImg.length ).toBeGreaterThan( 0 );
+  }));
 });
 
