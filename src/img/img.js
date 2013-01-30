@@ -51,7 +51,8 @@ angular.module( 'placeholders.img', [] )
        * then redraw the image.
        */
       scope.$watch('dimensions', function () {
-        var matches = scope.dimensions.match( /^(\d+)x(\d+)$/ );
+        var matches = scope.dimensions.match( /^(\d+)x(\d+)$/ ),
+            dataUrl;
         
         if(  ! matches ) {
           console.error("Expected '000x000'. Got " + scope.dimensions);
@@ -65,8 +66,16 @@ angular.module( 'placeholders.img', [] )
         element.prop( "title", scope.dimensions );
         element.prop( "alt", scope.dimensions );
 
-        // And draw the image, setting the returned data URL as the image src.
-        element.prop( 'src', drawImage() );
+        // And draw the image, getting the returned data URL.
+        dataUrl = drawImage();
+
+        // If this is an `img` tag, set the src as the data URL. Else, we set
+        // the CSS `background-image` property to same.
+        if ( element.prop( "tagName" ) === "IMG" ) {
+          element.prop( 'src', dataUrl );
+        } else {
+          element.css( 'background-image', 'url("' + dataUrl + '")' );      
+        }
       });
 
       /**
