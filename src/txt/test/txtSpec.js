@@ -85,7 +85,7 @@ describe( 'phTxt Directive', function () {
 
   it( 'should add a specified number of paragraphs', function () {
 
-    var tpl =  '<div ph-txt num-paragraphs="{{numParagraphs}}"></div>',
+    var tpl =  '<div ph-txt="{{numParagraphs}}p"></div>',
         element = $compile( tpl )( scope ),
         paragraphCount;
 
@@ -99,7 +99,7 @@ describe( 'phTxt Directive', function () {
 
   it( 'should add the specified number of sentences', function () {
     
-    var tpl =  '<div ph-txt num-sentences="{{numSentences}}"></div>',
+    var tpl =  '<div ph-txt="{{numSentences}}s"></div>',
         element = $compile( tpl )( scope ),
         text;
     
@@ -113,6 +113,31 @@ describe( 'phTxt Directive', function () {
     // *less* than the length after the split because 5 periods makes 6
     // segments.
     expect( text.split('.').length - 1 ).toBe( scope.numSentences );
+  });
+
+  it( 'should add the specified number of sentences in the specified # of paragraphs', function () {
+    
+    var tpl =  '<div ph-txt="{{numParagraphs}}p{{numSentences}}s"></div>',
+        element = $compile( tpl )( scope ),
+        paragraphs;
+    
+    scope.numSentences = 5;
+    scope.numParagraphs = 3;
+    scope.$digest();
+
+
+    paragraphs = element.find('p');
+    expect( paragraphs.length ).toBe( scope.numParagraphs );
+    
+    angular.forEach( paragraphs, function ( p ) {
+      // Get the inner text of the element.
+      var text = angular.element( p ).text();
+    
+      // It should have the specified number of sentences. We have to take one
+      // *less* than the length after the split because 5 periods makes 6
+      // segments.
+      expect( text.split('.').length - 1 ).toBe( scope.numSentences );
+    });
   });
 
 });

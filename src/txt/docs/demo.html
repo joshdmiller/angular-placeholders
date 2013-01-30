@@ -1,9 +1,13 @@
 <div ng-controller="TextDemoCtrl">
   <h3>Here's a few sentences</h3>
   <p># Sentences: <input ng-model="numSentences" /></p>
-  <p ph-txt num-sentences="{{numSentences}}"></p>
+  <p ph-txt="{{numSentences}}s"></p>
 
   <h3>And a few paragraphs</h3>
   <p># Paragraphs: <input ng-model="numParagraphs" /></p>
-  <div ph-txt num-paragraphs="{{numParagraphs}}"></div>
+  <div ph-txt="{{numParagraphs}}p"></div>
+
+  <h3>And combining both:</h3>
+  <p># Paragraphs: <input ng-model="numCombined" /></p>
+  <div ph-txt="{{numCombined}}"></div>
 </div>
