@@ -50,7 +50,8 @@ angular.module( 'placeholders.img', [] )
        * When the provided dimensions change, re-pull the width and height and
        * then redraw the image.
        */
-      scope.$watch('dimensions', function () {
+      scope.$watch('dimensions', function (dimensions) {
+        if (!angular.isDefined( dimensions ) ) return;
         var matches = scope.dimensions.match( /^(\d+)x(\d+)$/ ),
             dataUrl;
         
