@@ -51,6 +51,9 @@ angular.module( 'placeholders.img', [] )
        * then redraw the image.
        */
       scope.$watch('dimensions', function () {
+        if( ! angular.isDefined( scope.dimensions ) ) {
+            return;
+        }
         var matches = scope.dimensions.match( /^(\d+)x(\d+)$/ ),
             dataUrl;
         
