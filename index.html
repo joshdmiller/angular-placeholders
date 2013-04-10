@@ -6,8 +6,8 @@
     <meta name="description" content="AngularJS client-side placeholder directives">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
-    <script src="angular-placeholders-0.0.1-SNAPSHOT.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js"></script>
+    <script src="placeholders-0.0.1-SNAPSHOT.min.js"></script>
     <script src="assets/ui-bootstrap-tpls-0.1.0-SNAPSHOT.min.js"></script>
     <script src="assets/plunker.js"></script>
     <script>
@@ -28,9 +28,9 @@
       <div class="nav-collapse">
         <ul class="nav">
           
-            <li><a href="#images">Images</a></li>
+            <li><a href="#img">Img</a></li>
           
-            <li><a href="#text">Text</a></li>
+            <li><a href="#txt">Txt</a></li>
           
         </ul>
       </div>
@@ -103,32 +103,65 @@
 
     <div class="container container">
     
-      <section id="images">
+      <section id="img">
         <div class="page-header">
-          <h1>Images</h1>
+          <h1>Img</h1>
         </div>
         <div class="row">
             <div class="span6">
                 <div ng-controller="ImageDemoCtrl">
   <ul class="thumbnails">
-    <li class="span3"><a class="thumbnail"><img placeholder-image="260x196" /></a></li>
-    <li class="span2"><a class="thumbnail"><img placeholder-image="160x83" /></a></li>
-    <li class="span1"><a class="thumbnail"><img placeholder-image="60x83" /></a></li>
-    <li class="span2"><a class="thumbnail"><img placeholder-image="160x83" /></a></li>
-    <li class="span1"><a class="thumbnail"><img placeholder-image="60x83" /></a></li>
+    <li class="span3"><a class="thumbnail"><img ph-img="260x196" /></a></li>
+    <li class="span2"><a class="thumbnail"><img ph-img="160x83" /></a></li>
+    <li class="span1"><a class="thumbnail"><img ph-img="60x83" /></a></li>
+    <li class="span2"><a class="thumbnail"><img ph-img="160x83" /></a></li>
+    <li class="span1"><a class="thumbnail"><img ph-img="60x83" /></a></li>
   </ul>
+  <hr />
+  <div>
+    <h3>It Can Also Do a CSS Background</h3>
+    <div ph-img="550x100" style="width: 550px; height: 100px; background-repeat: no-repeat;">
+      <h4>Oooh...</h4>
+    </div>
+  </div>
+  <hr />
+  <div>
+    <h3>It's More Powerful with Bootstrap!</h3>
+    <ul class="inline">
+      <li>
+        <h4><center><code>.img-polaroid</code></center></h4>
+        <img class="img-polaroid" ph-img="160x160" />
+      </li>
+      <li>
+        <h4><center><code>.img-circle</code></center></h4>
+        <img class="img-circle" ph-img="160x160" />
+      </li>
+      <li>
+        <h4><center><code>.img-rounded</code></center></h4>
+        <img class="img-rounded" ph-img="160x160" />
+      </li>
+    </ul>
+  </div>
+  <hr />
+  <div>
+    <h3>It Can Change in Real Time</h3>
+    <p>Image Dimensions: <input ng-model="imageDimension"></p>
+    <img class="img-polaroid" ph-img="{{imageDimension}}" />
+  </div>
 </div>
 
             </div>
             <div class="span6">
-                <p>The <code>placeholderImage</code> directive creates client-side placeholder images in any
+                <p>The <code>phImg</code> directive creates client-side placeholder images in any
 size. The directive creates a PNG image using the HTML5 canvas library and
-uses the generated client-side URL as the <code>src</code> on an <code>img</code> element.</p>
+uses the generated client-side URL as either (a) the <code>src</code> attribute, if the
+element is an <code>img</code>, or (b) the <code>css-background</code> for all other types of
+elements.</p>
 
 <p>The directive takes a single eponymous attribute that specifies the dimensions
 of the image to create; the expected format is "100x100".</p>
                 <section>
-                From module: <a href="https://github.com/joshdmiller/angular-placeholders/tree/master/src/images">placeholders.images</a>
+                From module: <a href="https://github.com/joshdmiller/angular-placeholders/tree/master/src/img">placeholders.img</a>
                 </section>
             </div>
         </div>
@@ -136,21 +169,52 @@ of the image to create; the expected format is "100x100".</p>
         <div class="row">
             <div class="span12" ng-controller="PlunkerCtrl">
                 <div class="pull-right">
-                    <button class="btn btn-info" id="plunk-btn" ng-click="edit('0.0.1-SNAPSHOT', 'images')"><i class="icon-edit icon-white"></i> Edit in plunker</button>
+                    <button class="btn btn-info" id="plunk-btn" ng-click="edit('0.0.1-SNAPSHOT', 'img')"><i class="icon-edit icon-white"></i> Edit in plunker</button>
                 </div>
                 <tabs>
                     <pane heading="Markup" plunker-content="markup"><pre ng-non-bindable><code data-language="html">&lt;div ng-controller=&quot;ImageDemoCtrl&quot;&gt;
   &lt;ul class=&quot;thumbnails&quot;&gt;
-    &lt;li class=&quot;span3&quot;&gt;&lt;a class=&quot;thumbnail&quot;&gt;&lt;img placeholder-image=&quot;260x196&quot; &#x2F;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-    &lt;li class=&quot;span2&quot;&gt;&lt;a class=&quot;thumbnail&quot;&gt;&lt;img placeholder-image=&quot;160x83&quot; &#x2F;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-    &lt;li class=&quot;span1&quot;&gt;&lt;a class=&quot;thumbnail&quot;&gt;&lt;img placeholder-image=&quot;60x83&quot; &#x2F;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-    &lt;li class=&quot;span2&quot;&gt;&lt;a class=&quot;thumbnail&quot;&gt;&lt;img placeholder-image=&quot;160x83&quot; &#x2F;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-    &lt;li class=&quot;span1&quot;&gt;&lt;a class=&quot;thumbnail&quot;&gt;&lt;img placeholder-image=&quot;60x83&quot; &#x2F;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-  &lt;&#x2F;ul&gt;
-&lt;&#x2F;div&gt;
+    &lt;li class=&quot;span3&quot;&gt;&lt;a class=&quot;thumbnail&quot;&gt;&lt;img ph-img=&quot;260x196&quot; /&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;span2&quot;&gt;&lt;a class=&quot;thumbnail&quot;&gt;&lt;img ph-img=&quot;160x83&quot; /&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;span1&quot;&gt;&lt;a class=&quot;thumbnail&quot;&gt;&lt;img ph-img=&quot;60x83&quot; /&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;span2&quot;&gt;&lt;a class=&quot;thumbnail&quot;&gt;&lt;img ph-img=&quot;160x83&quot; /&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;span1&quot;&gt;&lt;a class=&quot;thumbnail&quot;&gt;&lt;img ph-img=&quot;60x83&quot; /&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;hr /&gt;
+  &lt;div&gt;
+    &lt;h3&gt;It Can Also Do a CSS Background&lt;/h3&gt;
+    &lt;div ph-img=&quot;550x100&quot; style=&quot;width: 550px; height: 100px; background-repeat: no-repeat;&quot;&gt;
+      &lt;h4&gt;Oooh...&lt;/h4&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;hr /&gt;
+  &lt;div&gt;
+    &lt;h3&gt;It&#x27;s More Powerful with Bootstrap!&lt;/h3&gt;
+    &lt;ul class=&quot;inline&quot;&gt;
+      &lt;li&gt;
+        &lt;h4&gt;&lt;center&gt;&lt;code&gt;.img-polaroid&lt;/code&gt;&lt;/center&gt;&lt;/h4&gt;
+        &lt;img class=&quot;img-polaroid&quot; ph-img=&quot;160x160&quot; /&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;h4&gt;&lt;center&gt;&lt;code&gt;.img-circle&lt;/code&gt;&lt;/center&gt;&lt;/h4&gt;
+        &lt;img class=&quot;img-circle&quot; ph-img=&quot;160x160&quot; /&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;h4&gt;&lt;center&gt;&lt;code&gt;.img-rounded&lt;/code&gt;&lt;/center&gt;&lt;/h4&gt;
+        &lt;img class=&quot;img-rounded&quot; ph-img=&quot;160x160&quot; /&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+  &lt;hr /&gt;
+  &lt;div&gt;
+    &lt;h3&gt;It Can Change in Real Time&lt;/h3&gt;
+    &lt;p&gt;Image Dimensions: &lt;input ng-model=&quot;imageDimension&quot;&gt;&lt;/p&gt;
+    &lt;img class=&quot;img-polaroid&quot; ph-img=&quot;{{imageDimension}}&quot; /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
 </code></pre></pane>
                     <pane heading="JavaScript" plunker-content="javascript"><pre ng-non-bindable><code data-language="javascript">var ImageDemoCtrl = function ( $scope ) {
-  $scope.imageDimension = &#x27;200x200&#x27;;
+  $scope.imageDimension = &#x27;550x300&#x27;;
 };
 </code></pre></pane>
                 </tabs>
@@ -158,40 +222,50 @@ of the image to create; the expected format is "100x100".</p>
         </div>
       </section>
       <script>var ImageDemoCtrl = function ( $scope ) {
-  $scope.imageDimension = '200x200';
+  $scope.imageDimension = '550x300';
 };
 </script>
     
-      <section id="text">
+      <section id="txt">
         <div class="page-header">
-          <h1>Text</h1>
+          <h1>Txt</h1>
         </div>
         <div class="row">
             <div class="span6">
                 <div ng-controller="TextDemoCtrl">
   <h3>Here's a few sentences</h3>
   <p># Sentences: <input ng-model="numSentences" /></p>
-  <p placeholder-text num-sentences="{{numSentences}}"></p>
+  <p ph-txt="{{numSentences}}s"></p>
 
   <h3>And a few paragraphs</h3>
   <p># Paragraphs: <input ng-model="numParagraphs" /></p>
-  <div placeholder-text num-paragraphs="{{numParagraphs}}"></div>
+  <div ph-txt="{{numParagraphs}}p"></div>
+
+  <h3>And combining both:</h3>
+  <p># Paragraphs: <input ng-model="numCombined" /></p>
+  <div ph-txt="{{numCombined}}"></div>
 </div>
 
             </div>
             <div class="span6">
-                <p>The <code>placeholderText</code> directive dynamically inserts "Lorem ipsum"-style text
+                <p>The <code>phTxt</code> directive dynamically inserts "Lorem ipsum"-style text
 into an element. It can work as either an element or an attribute. </p>
 
-<p><code>placeholderText</code> accepts two optional attributes: <code>num-sentences</code> and
-<code>num-paragraphs</code>. If <code>num-sentences</code> is provided, the body of the element will
-be replaced with the specified number of sentences. <code>num-paragraphs</code> will
-replace the body of the element with the specified number of <code>&lt;p&gt;</code> tags
-containing random sentences. </p>
+<p><code>phTxt</code> accepts a single value that can express the number of desired paragraphs
+and/or sentences. The format is <code>#p#s</code>, where the numbers represent the number
+of requested paragraphs and sentences, respectively. Order is irrelevant.</p>
 
-<p>The default behavior is a random number of paragraphs.</p>
+<p>If both are provided, the element will contain the requested number of
+paragraphs, each with the requested number of sentences.</p>
+
+<p>If just the number of paragraphs is provided, the number of sentences will be
+random for each paragraph. If just the number of sentences is provided, no
+paragraphs will be generated - just the specified number of sentences.</p>
+
+<p>If neither are provided, the default behavior is a random number of paragraphs,
+each with a random number of sentences.</p>
                 <section>
-                From module: <a href="https://github.com/joshdmiller/angular-placeholders/tree/master/src/text">placeholders.text</a>
+                From module: <a href="https://github.com/joshdmiller/angular-placeholders/tree/master/src/txt">placeholders.txt</a>
                 </section>
             </div>
         </div>
@@ -199,22 +273,27 @@ containing random sentences. </p>
         <div class="row">
             <div class="span12" ng-controller="PlunkerCtrl">
                 <div class="pull-right">
-                    <button class="btn btn-info" id="plunk-btn" ng-click="edit('0.0.1-SNAPSHOT', 'text')"><i class="icon-edit icon-white"></i> Edit in plunker</button>
+                    <button class="btn btn-info" id="plunk-btn" ng-click="edit('0.0.1-SNAPSHOT', 'txt')"><i class="icon-edit icon-white"></i> Edit in plunker</button>
                 </div>
                 <tabs>
                     <pane heading="Markup" plunker-content="markup"><pre ng-non-bindable><code data-language="html">&lt;div ng-controller=&quot;TextDemoCtrl&quot;&gt;
-  &lt;h3&gt;Here&#x27;s a few sentences&lt;&#x2F;h3&gt;
-  &lt;p&gt;# Sentences: &lt;input ng-model=&quot;numSentences&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
-  &lt;p placeholder-text num-sentences=&quot;{{numSentences}}&quot;&gt;&lt;&#x2F;p&gt;
+  &lt;h3&gt;Here&#x27;s a few sentences&lt;/h3&gt;
+  &lt;p&gt;# Sentences: &lt;input ng-model=&quot;numSentences&quot; /&gt;&lt;/p&gt;
+  &lt;p ph-txt=&quot;{{numSentences}}s&quot;&gt;&lt;/p&gt;
 
-  &lt;h3&gt;And a few paragraphs&lt;&#x2F;h3&gt;
-  &lt;p&gt;# Paragraphs: &lt;input ng-model=&quot;numParagraphs&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
-  &lt;div placeholder-text num-paragraphs=&quot;{{numParagraphs}}&quot;&gt;&lt;&#x2F;div&gt;
-&lt;&#x2F;div&gt;
+  &lt;h3&gt;And a few paragraphs&lt;/h3&gt;
+  &lt;p&gt;# Paragraphs: &lt;input ng-model=&quot;numParagraphs&quot; /&gt;&lt;/p&gt;
+  &lt;div ph-txt=&quot;{{numParagraphs}}p&quot;&gt;&lt;/div&gt;
+
+  &lt;h3&gt;And combining both:&lt;/h3&gt;
+  &lt;p&gt;# Paragraphs: &lt;input ng-model=&quot;numCombined&quot; /&gt;&lt;/p&gt;
+  &lt;div ph-txt=&quot;{{numCombined}}&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
 </code></pre></pane>
                     <pane heading="JavaScript" plunker-content="javascript"><pre ng-non-bindable><code data-language="javascript">var TextDemoCtrl = function ( $scope ) {
   $scope.numSentences = &quot;3&quot;;
   $scope.numParagraphs = &quot;2&quot;;
+  $scope.numCombined = &quot;2p3s&quot;;
 };
 </code></pre></pane>
                 </tabs>
@@ -224,6 +303,7 @@ containing random sentences. </p>
       <script>var TextDemoCtrl = function ( $scope ) {
   $scope.numSentences = "3";
   $scope.numParagraphs = "2";
+  $scope.numCombined = "2p3s";
 };
 </script>
     
