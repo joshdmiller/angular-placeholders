@@ -16,7 +16,7 @@ angular.module('plunker', [])
           '<html ng-app="plunker">\n' +
           '  <head>\n' +
           '    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.js"></script>\n' +
-          '    <script src="http://joshdmiller.github.com/angular-placeholders/angular-placeholders-'+version+'.js"></script>\n' +
+          '    <script src="http://joshdmiller.github.com/angular-placeholders/placeholders-'+version+'.js"></script>\n' +
           '    <script src="example.js"></script>\n' +
           '    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">\n' +
           '  </head>\n' +
