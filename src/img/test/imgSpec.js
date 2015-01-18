@@ -28,7 +28,7 @@ describe( 'phImg', function () {
   it( 'should add the title and alt attributes', inject( function () {
     var dimensions = scope.w+'x'+scope.h;
     expect( element.prop( 'alt' ) ).toBe( dimensions );
-    expect( element.prop( 'title' ) ).toBe( dimensions );
+    expect( element.prop( 'title' ) ).toBe( dimensions || scope.title);
   }));
 
   it( 'should set the CSS `background-image` property if tag is not an img', inject( function () {
