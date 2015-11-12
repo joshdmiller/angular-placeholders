@@ -15,6 +15,11 @@
   </div>
   <hr />
   <div>
+    <h3>What about a custom label?</h3>
+    <img ph-img="550x90" ph-img-label="Custom label">
+  </div>
+  <hr />
+  <div>
     <h3>It's More Powerful with Bootstrap!</h3>
     <ul class="inline">
       <li>
@@ -35,6 +40,7 @@
   <div>
     <h3>It Can Change in Real Time</h3>
     <p>Image Dimensions: <input ng-model="imageDimension"></p>
-    <img class="img-polaroid" ph-img="{{imageDimension}}" />
+    <p>Image Dimensions: <input ng-model="imageLabel"></p>
+    <img class="img-polaroid" ph-img="{{imageDimension}}" ph-img-label="{{imageLabel}}" />
   </div>
 </div>
