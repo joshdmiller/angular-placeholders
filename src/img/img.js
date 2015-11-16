@@ -29,7 +29,10 @@ angular.module( 'placeholders.img', [] )
 .directive( 'phImg', function () {
   return {
     restrict: 'A',
-    scope: { dimensions: '@phImg' },
+    scope: {
+      dimensions: '@phImg',
+      label: '@phImgLabel'
+    },
     link: function( scope, element, attr ) {
       // A reference to a canvas that we can reuse
       var canvas;
@@ -50,36 +53,40 @@ angular.module( 'placeholders.img', [] )
        * When the provided dimensions change, re-pull the width and height and
        * then redraw the image.
        */
-      scope.$watch('dimensions', function () {
-        if( ! angular.isDefined( scope.dimensions ) ) {
-            return;
-        }
-        var matches = scope.dimensions.match( /^(\d+)x(\d+)$/ ),
-            dataUrl;
-        
-        if(  ! matches ) {
-          console.error("Expected '000x000'. Got " + scope.dimensions);
-          return;
-        }
-        
-        // Grab the provided dimensions.
-        scope.size = { w: matches[1], h: matches[2] };
+       scope.$watch(function() { return [attr.phImg, attr.phImgLabel]; }, function () {
+         if( ! angular.isDefined( scope.dimensions ) ) {
+             return;
+         }
+         var matches = scope.dimensions.match( /^(\d+)x(\d+)$/ ),
+             dataUrl;
 
-        // FIXME: only add these if not already present
-        element.prop( "title", scope.dimensions );
-        element.prop( "alt", scope.dimensions );
+         if(  ! matches ) {
+           console.error("Expected '000x000'. Got " + scope.dimensions);
+           return;
+         }
 
-        // And draw the image, getting the returned data URL.
-        dataUrl = drawImage();
+         // Grab the provided dimensions.
+         scope.size = { w: matches[1], h: matches[2] };
 
-        // If this is an `img` tag, set the src as the data URL. Else, we set
-        // the CSS `background-image` property to same.
-        if ( element.prop( "tagName" ) === "IMG" ) {
-          element.prop( 'src', dataUrl );
-        } else {
-          element.css( 'background-image', 'url("' + dataUrl + '")' );      
-        }
-      });
+         // Add missing image properties.
+         if ( !element.prop( "title" ) ) {
+           element.prop( "title", scope.dimensions );
+         }
+         if ( !element.prop( "alt" ) ) {
+           element.prop( "alt", scope.dimensions );
+         }
+
+         // And draw the image, getting the returned data URL.
+         dataUrl = drawImage();
+
+         // If this is an `img` tag, set the src as the data URL. Else, we set
+         // the CSS `background-image` property to same.
+         if ( element.prop( "tagName" ) === "IMG" ) {
+           element.prop( 'src', dataUrl );
+         } else {
+           element.css( 'background-image', 'url("' + dataUrl + '")' );
+         }
+       }, true);
 
       /**
        * Calculate the maximum height of the text we can draw, based on the
@@ -102,7 +109,7 @@ angular.module( 'placeholders.img', [] )
         // Create a new canvas if we don't already have one. We reuse the canvas
         // when if gets redrawn so as not to be wasteful.
         canvas = canvas || document.createElement( 'canvas' );
-        
+
         // Obtain a 2d drawing context on which we can add the placeholder
         // image.
         var context = canvas.getContext( '2d' ),
@@ -136,7 +143,8 @@ angular.module( 'placeholders.img', [] )
         }
 
         // Finally, draw the text in its calculated position.
-        context.fillText( scope.dimensions, scope.size.w / 2, scope.size.h / 2 );
+        scope.label = scope.label || scope.dimensions;
+        context.fillText( scope.label, scope.size.w / 2, scope.size.h / 2 );
 
         // Get the data URL and return it.
         return canvas.toDataURL("image/png");
@@ -144,4 +152,3 @@ angular.module( 'placeholders.img', [] )
     }
   };
 });
-
